@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>绑定</title>
+</head>
+<body>
+    <div ng-app="myApp" ng-controller="myCtrl" ng-init="MyAppInit();" style="padding-bottom: 500px">    <!--指令定义一个 AngularJS 应用程序-->
+
+        <!--ng-model-->
+        <div>
+            <p>写写东东 : <input type="text" ng-model="name1"></p>
+            <p>{{name1}}</p>
+        </div>
+        <div>--------------------------001--------------------------</div>
+
+        <!--ng-init-->
+        <div ng-init="name2='111'">
+            <p>This is a <span>{{name2}}</span>.</p>
+        </div>
+        <div ng-init="name3='222'">
+            <p>This is a <span ng-bind="name3"></span>.</p>
+        </div>
+        <div>--------------------------002--------------------------</div>
+
+        <!--控制台绑定-->
+        <div>
+            <p>name1: {{firstName}}</p>
+            <p>name2: {{lastName}}</p>
+        </div>
+        <div>--------------------------003--------------------------</div>
+
+        <!--对象-->
+        <div ng-init="name={ren1:'人1',ren2: '人2'}">
+            <p>name4: {{name.ren1}}</p>
+        </div>
+        <div>--------------------------004--------------------------</div>
+
+        <!--数组-->
+        <div>
+            <p>第3个点数是：{{point1[2]}}</p>
+            <p>第5个点数是：<span ng-bind="point1[4]"></span></p>
+        </div>
+        <div>--------------------------005--------------------------</div>
+
+        <div ng-repeat="point1x in point2">
+            <!--<p>{{point1x}}</p>-->
+            <span>{{point1x.num1}}</span>
+            <span>{{point1x.num2}}</span>
+            <span>{{point1x.num3}}</span>
+            <span>{{point1x.num4}}</span>
+        </div>
+        <div>--------------------------006--------------------------</div>
+
+        <!--自定义了个指令-->
+        <set-directive1></set-directive1>
+        <div set-directive2></div>
+        <div class="set-directive3"></div>
+        <div>--------------------------007--------------------------</div>
+
+        <!--绑定与双向绑定-->
+        <div>
+            <input type="text" ng-model="age1">
+            <input type="text" ng-model="age2" style="display: block;">
+            <p>{{age2}}</p>
+        </div>
+        <div>--------------------------008--------------------------</div>
+
+        <!--验证用户输入-->
+        <form role="form" name="testForm1" novalidate>
+            <span>验证邮箱：</span>
+            <input type="email" name="myinput1" ng-model="kkbbb">
+            <span ng-show="testForm1.myinput1.$dirty&&testForm1.myinput1.$invalid">这是假的</span>
+        </form>
+        <div>--------------------------009--------------------------</div>
+
+        <form role="form" name="testFrom2" ng-submit="testSubmit1()" novalidate>
+            <span>验证一个东东：</span>
+            <input type="text" name="testName1" style="display: block"
+                   ng-model="text"
+                   ng-pattern="/^[0-9]{5,15}$/"
+                   ng-blur="DisplayError.NameIsError1=testFrom2.testName1.$dirty && testFrom2.testName1.$invalid"
+                   ng-focus="DisplayError.NameIsError1=false">
+            <span ng-show="DisplayError.NameIsError1">这是不对的，请重新输入</span>
+
+            <input type="text" name="testName2" style="display: block"
+                   ng-model="text"
+                   ng-pattern="/^[0-9]{5,15}$/"
+                   ng-blur="DisplayError.NameIsError2=testFrom2.testName2.$dirty && testFrom2.testName2.$invalid"
+                   ng-focus="DisplayError.NameIsError2=false">
+            <span ng-show="DisplayError.NameIsError2">这也是错的，再来一次</span>
+
+            <a href="javascript:void(0);" style="display: block">提交</a>
+        </form>
+        <div>--------------------------010--------------------------</div>
+
+
+
+
+        <div>--------------------------011--------------------------</div>
+
+
+
+
+
+
+    </div>
+
+
+
+    <script type="text/javascript" src="js/angular.min.js"></script>
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap.js"></script>
+    <script src="Controller.js"></script>
+</body>
+</html>
